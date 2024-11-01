@@ -1,0 +1,616 @@
+/*  
+Yozakura CSS
+Giri Diwa Adam
+1.0.1.-beta
+MIT Licensed
+
+*/
+/* 
+1. Settings root untuk menentukan Warna yang akan di pakai dengan menggunakan var(--namaprefix)
+*/
+:root{
+    --netral:#fff;
+    --placeholder-theme:#9ca3af;
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+/*  
+1. Penyesuaian Bentuk Padding dan Border dengan element Panjang
+2. Memperbolehkan Penambahan Border ke dalam element dengan menambahkan panjang-border 
+*/
+*,
+::before,
+::after{
+    box-sizing:border-box; /* 1 */
+    border-width: 0; /* 2 */
+    border-style: solid; /* 2 */
+    border-color: currentColor; /* 2 */
+}
+
+::before,
+::after{
+    --yz-content:'';
+}
+
+/*
+1. Gunakan Konsistensi Tinggi Garis di semua Browser.
+2. Mencegah Penyesuaian Ukuran text setelah orientasi di ubah di Ios
+3. Gunakan Tab Size yang mudah di baca
+4. Memperbolehkan User mengkonfigurasi `sans` font-family secara default
+5. Memperbolehkan User mengkonfigurasi `sans` font-feature-settings secara default.
+6. Memperbolehkan User mengkonfigurasi `sans` font-variant-settings secara default.
+7. Menonaktifkan Sorotan ketuk di Ios
+*/
+html,
+:host{
+    line-height: 1.5; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    -moz-tab-size: 4; /* 3 */
+    tab-size: 4 ; /* 3 */
+    font-family: var(--font-sans); /* 4 */
+    font-feature-settings: var(--font-sans); /* 5 */
+    font-variation-settings: var(--font-sans); /* 6 */
+    -webkit-tap-highlight-color: transparent; /* 7 */
+}
+/* 
+1. Hapus Margin dari semua browser
+2. Mewarisi tinggi garis dari `html` sehingga pengguna dapat menetapkannya sebagai kelas langsung pada elemen `html`.
+*/
+
+body{
+    margin:0; /* 1 */
+    line-height: inherit; /* 2 */
+}
+
+/*
+1. Perbaikan Tinggi di Firefox.
+2. Perbaikan Inheritance dari Warna Border di Firefox.
+3. Memastikan aturan horizontal di dapat di lihat secara default
+*/
+
+hr{
+    height: 0; /* 1 */
+    color: inherit; /* 2 */
+    border-top-width: 1px; /* 3 */
+}
+
+/*
+Penambahan Perbaikan Dekorasi Text di Chrome, Edge, dan Safari.
+*/
+
+abbr:where([title]){
+    text-decoration: underline dotted;
+}
+
+/* 
+1. Hilangkan ukuran font secara default dan lebar untuk headings.
+2. Memperbaiki Margin Bawaan Browser secara default.
+3. Memperbaiki Tebal Font Bawaan Browser secara default.
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+    font-size: inherit; /* 1 */
+    font-weight: inherit; /* 1 */
+    margin-block-start:  0; /* 2 */
+    margin-block-end:  0; /* 2 */
+    margin-inline-start:  0; /* 2 */
+    margin-inline-end: 0; /* 2 */
+    font-weight: inherit; /* 3 */
+}
+
+/* 
+Riset Tautan ke optimasi untuk opt-in gaya alih-alih opt-out.
+*/
+
+a{
+    color: inherit;
+    text-decoration: inherit;
+}
+
+/* 
+Tambahkan Perbaikan Tebal Tulisan di edge dan Safari
+*/
+b,
+strong{
+    font-weight: bolder;
+}
+
+/* 
+1. Memperbolehkan user Mengkonfigurasi font-family `mono` secara default
+2. Memperbolehkan user Mengkonfigurasi font-feature-settings `mono` secara-default
+3. Memperbolehkan user Mengkonfigurasi font-variation-settings `mono` secara-default
+4. Perbaikan odd `em` ukuran font di semua browser.
+*/
+
+code,
+kbd,
+samp,
+pre{
+    font-family: var(--font-mono); /* 1 */
+    font-feature-settings: var(--font-mono) normal;
+    font-variation-settings: var(--font-mono) normal;
+}
+
+/* 
+Penambahan Perbaikan Ukuran Font di semua browser
+*/
+small{
+    font-size: 80%;
+}
+
+/* 
+Mencegah element `sup` dan `sup` mempengaruhi tinggi garis di semua browser
+*/
+sub,
+sup{
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub{
+    bottom: -0.25em;
+}
+
+sup{
+    top: -0.5em;
+}
+
+/* 
+1. hapus semua identasi dari content table di chrome dan safari (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Perbaikan Border Table warna inheritance di semua chrome dan safari
+3. Hapus Jarak antar garis tepi tabel secara default.
+*/
+
+table{
+    text-indent: 0;/* 1 */
+    border-color: inherit; /* 2 */
+    border-collapse: collapse; /* 3 */
+}
+
+/* 
+1. Ubah font style di semua browser.
+2. Hapus jarak di firefox dan safari.
+3. Hapus bawaan jarak di semua browser
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea{
+    font-family: inherit; /* 1 */
+    font-feature-settings: inherit; /* 1 */
+    font-variation-settings: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    font-weight: inherit; /* 1 */
+    line-height: inherit; /* 1 */
+    letter-spacing: inherit; /* 1 */
+    color: inherit; /* 1 */
+    margin:0; /* 2 */
+    padding: 0; /* 3 */
+}
+
+
+/* 
+Hapus Semua turunan dari text transform di edge dan firefox
+*/
+
+button,
+select{
+    text-transform: none;
+}
+
+/* 
+1. Perbaikan Inabilitas untuk gaya clickable tipe di iOS dan Safari
+2. Hapus Style Bawaan Button
+*/
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']){
+    -webkit-appearance: button; /* 1 */
+    appearance: button; /* 1 */
+    background-color:  transparent; /* 2 */ 
+    background-image: none; /* 2 */
+}
+
+/* 
+Gunakan focus modern firefox gaya untuk semua fokus element
+*/
+:-moz-focusring{
+    outline: auto;
+}
+
+/* 
+Hapus bawaan `:invalid` gaya di firefox
+*/
+
+:-moz-ui-invalid{
+    box-shadow: none;
+}
+
+/* 
+Tambahkan Perbaikan Posisi garis vertikal di chrome dan Firefox 
+*/
+
+progress{
+    vertical-align: baseline;
+}
+
+/* 
+Perbaikan Gaya penunjuk untuk tombol naik dan turun di safari 
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button{
+    height: auto;
+}
+
+/* 
+1. Perbaikan ODD apperance di Chrome dan Safari
+2. Perbaikan Garis Outline di safari.
+*/
+
+[type='search']{
+    -webkit-appearance: textfield; /* 1 */
+    appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+}
+
+/* 
+Hapus Jarak Bawaan di Chrome dan safari pada macOS
+*/
+
+::-webkit-search-decoration{
+    -webkit-appearance: none;
+    appearance: none;
+}
+/* 
+1. Perbaikan Inabilitas ke gaya tipe clickable di iOS dan Safari.
+2. Ubah Font properties ke `inherit` di safari.
+*/
+
+::-webkit-file-upload-button{
+    -webkit-appearance: button; /* 1 */
+    appearance: button;
+    font:inherit; /* 2 */
+}
+
+/* 
+Tambahkan Perbaikan Display di Chrome dan Safari 
+*/
+summary{
+    display: list-item;
+}
+
+/* 
+Hapus semua Jarak dan border default untuk element yang sesuai
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre{
+    margin:0;
+}
+
+fieldset{
+    margin: 0;
+    padding: 0;
+}
+
+legend{
+    padding: 0;
+}
+
+ol,
+ul,
+menu {
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+/* 
+Kembalikan Style Default untuk dialogs
+*/
+
+dialog{
+    padding: 0;
+}
+
+/* 
+Mencegah Pegubahan Ukuran text area horizontal secara default
+*/
+textarea{
+    resize: vertical;
+}
+
+/* 
+1. Kembalikan Default Placeholder Opasitas di Firefox
+2. Dan Set warna default placeholder untuk di konfigurasi abu-abu 400.
+*/
+
+input::placeholder,
+text-area::placeholder{
+    opacity: 1; /* 1 */
+    color: var(--placeholder-theme);
+
+}
+
+/* 
+Set Penunjuk ke default untuk tombol.
+*/
+button,
+[role="button"]{
+    cursor:pointer;
+}
+
+/* 
+Buat Button ter disabled dan jangan beri cursor pointer
+*/
+
+:disabled{
+    cursor: default;
+}
+
+/* 
+1. Buat Pergantian element `display:block` secara default.
+2. Tambahkan `vertical-align: middle` untuk menyelaraskan elemen yang diganti secara lebih tepat secara default. Hal ini dapat memicu kesalahan lint yang dianggap buruk pada beberapa alat, namun memang disertakan secara sengaja
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/* 
+Batasi gambar dan video sesuai lebar induknya dan pertahankan rasio aspek intrinsiknya. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 
+Membuat elemen dengan atribut HTML tersembunyi tetap tersembunyi secara default 
+*/
+
+[hidden]:where(:not([hidden="until-found"])) {
+    display: none;
+}
+
+/* 
+Buat Tampilan Secara default 
+*/
+.flex{
+    display: flex;
+}
+.block{
+    display: block;
+}
+.grid{
+    display: grid;
+}
+
+/* 
+Flex Basis yang di buat secara default di sini
+Note: Kalian Bisa Tambahkan Flex basis sesuai yg di inginkan 
+dengan menggunakan CSS Custom buatan sendiri.
+*/
+flex-basis-auto{
+    flex-basis: auto;
+}
+.flex-basis-content{
+    flex-basis: content;
+}
+.flex-basis-max-content{
+    flex-basis: max-content;
+}
+.flex-basis-min-content{
+    flex-basis: min-content;
+}
+.flex-basis-fit-content{
+    flex-basis: fit-content;
+}
+
+/* 
+Arah Flex secara default (Bawaan CSS Flexbox)
+*/
+.flex-row{
+    flex-direction: row; 
+}
+.flex-column{
+    flex-direction: column;
+}
+.flex-row-reverse{
+    flex-direction: row-reverse;
+}
+.flex-reverse{
+    flex-direction: column-reverse;
+}
+
+/* 
+Posisi Flex Selanjutnya
+*/
+
+.flex-wrap{
+    flex-wrap:wrap;
+}
+.flex-wrap-reverse{
+    flex-wrap: wrap-reverse;
+}
+.flex-nowrap{
+    flex-wrap: nowrap;
+}
+
+/* 
+Ukuran Tebal Font
+*/
+
+.font-100{
+    font-weight: 100;
+}
+.font-200{
+    font-weight: 200;
+}
+.font-300{
+    font-weight: 300;
+}
+.font-400{
+    font-weight: 400;
+}
+.font-500{
+    font-weight: 500;
+}
+.font-600{
+    font-weight: 600;
+}
+.font-700{
+    font-weight: 700;
+}
+.font-800{
+    font-weight: 800;
+}
+.font-900{
+    font-weight: 900;
+}
+.font-bold{
+    font-weight: bold;
+}
+.font-bolder{
+    font-weight: bolder;
+}
+.font-lighter{
+    font-weight: lighter;
+}
+
+
+/* 
+Posisi Default Item scecara vertikal
+*/
+
+.items-start{
+    align-items: start;
+}
+.items-center{
+    align-items: center;
+}
+.items-end{
+    align-items: end;
+}
+
+/* 
+Posisi Default Item Secara Horizontal
+*/
+.justify-start{
+    justify-content: start;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-between{
+    justify-content: space-between;
+}
+.justify-end{
+    justify-content: end;
+}
+
+/* 
+Ukuran Font Secara default 
+*/
+
+.text-1{
+    font-size:1em;
+}
+.text-2{
+    font-size:2em;
+}
+.text-3{
+    font-size: 3em;
+}
+.text-4{
+    font-size: 4em;
+}
+.text-5{
+    font-size: 5em;
+}
+.text-6{
+    font-size: 6em;
+}
+.text-7{
+    font-size: 7em;
+}
+.text-8{
+    font-size: 8em;
+}
+.text-9{
+    font-size: 9em;
+}
+.text-10{
+    font-size: 10em;
+}
+
+/* Ukuran Jarak antar Element (Bisa Pakai Display `flex` atau `grid`) */
+
+.gap-1{
+    gap:1em;
+}
+.gap-2{
+    gap:2em;
+}
+.gap-3{
+    gap:3em;
+}
+.gap-4{
+    gap:4em;
+}
+.gap-5{
+    gap:5em;
+}
+.gap-6{
+    gap:6em;
+}
+.gap-7{
+    gap:7em;
+}
+.gap-8{
+    gap:8em;
+}
+.gap-9{
+    gap:9em;
+}
+.gap-10{
+    gap:10em;
+}
+
+
+
+
+
+
+

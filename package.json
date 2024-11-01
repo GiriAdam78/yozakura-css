@@ -1,0 +1,13 @@
+{
+  "name": "yozakura-css",
+  "version": "1.0.1-beta",
+  "description": "Custom Flexible CSS Only",
+  "main": "index.js",
+  "style": "css/styles.css",
+  "keywords": ["css", "styles", "custom-styles"],
+  "author": "Giri Diwa Adam",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
